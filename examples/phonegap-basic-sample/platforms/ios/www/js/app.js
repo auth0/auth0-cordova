@@ -1,17 +1,15 @@
 document.addEventListener('deviceready',function() {
-    var widget = new Auth0Widget({
-        // All this properties are set on auth0-variables.js
-        domain: AUTH0_DOMAIN,
-        clientID: AUTH0_CLIENT_ID,
-        callbackURL: AUTH0_CALLBACK_URL,
-        callbackOnLocationHash: true
-    });
+    var lock = new Auth0Lock(
+      // All these properties are set in auth0-variables.js
+      AUTH0_CLIENT_ID,
+      AUTH0_DOMAIN
+    );
 
     var userProfile;
 
     $('.btn-login').click(function(e) {
       e.preventDefault();
-      widget.signin({ popup: true} , null, function(err, profile, token) {
+      lock.show(function(err, profile, token) {
         if (err) {
           // Error callback
           console.log("There was an error");

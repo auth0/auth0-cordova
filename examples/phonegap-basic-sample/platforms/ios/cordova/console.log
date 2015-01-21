@@ -127,3 +127,15 @@ You could find it at the following address https://developer.apple.com/icloud/do
 2014-08-12 17:50:08.058 BasicSample[51059:70b] Resetting plugins due to page load.
 2014-08-12 17:50:09.047 BasicSample[51059:70b] Finished load of: file:///Users/gonto/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/582B5EF8-8753-4F7E-8E73-7EF3684871F5/BasicSample.app/www/index.html
 2014-08-12 17:50:45.757 BasicSample[51059:70b] THREAD WARNING: ['InAppBrowser'] took '18.572998' ms. Plugin should use a background thread.
+2015-01-21 15:19:43.097 BasicSample[56836:11464203] Multi-tasking -> Device: YES, App: YES
+2015-01-21 15:19:43.118 BasicSample[56836:11464203] Unlimited access to network resources
+2015-01-21 15:19:43.125 BasicSample[56836:11464203] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2015-01-21 15:19:43.888 BasicSample[56836:11464203] Resetting plugins due to page load.
+2015-01-21 15:19:45.710 BasicSample[56836:11464203] Finished load of: file:///Users/gonto/Library/Developer/CoreSimulator/Devices/9BD26268-EFB1-4CE8-B748-50BC282416AD/data/Containers/Bundle/Application/22DA82BC-9B72-4D6E-B8D8-BD4568BC53D8/BasicSample.app/www/index.html
+2015-01-21 15:21:02.653 BasicSample[56836:11464203] THREAD WARNING: ['InAppBrowser'] took '284.059082' ms. Plugin should use a background thread.
