@@ -127,3 +127,28 @@ You could find it at the following address https://developer.apple.com/icloud/do
 2014-08-12 17:50:08.058 BasicSample[51059:70b] Resetting plugins due to page load.
 2014-08-12 17:50:09.047 BasicSample[51059:70b] Finished load of: file:///Users/gonto/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/582B5EF8-8753-4F7E-8E73-7EF3684871F5/BasicSample.app/www/index.html
 2014-08-12 17:50:45.757 BasicSample[51059:70b] THREAD WARNING: ['InAppBrowser'] took '18.572998' ms. Plugin should use a background thread.
+2015-01-21 15:14:44.958 BasicSample[56025:11436704] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/gonto/Library/Developer/CoreSimulator/Devices/9BD26268-EFB1-4CE8-B748-50BC282416AD/data/Containers/Data/Application/C4290A87-BE6A-4692-A1FA-EA40A57AD7E8/Library/Cookies/Cookies.binarycookies
+2015-01-21 15:14:45.226 BasicSample[56025:11436704] Multi-tasking -> Device: YES, App: YES
+2015-01-21 15:14:45.268 BasicSample[56025:11436704] Unlimited access to network resources
+2015-01-21 15:14:45.281 BasicSample[56025:11436704] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2015-01-21 15:14:48.013 BasicSample[56025:11436704] Resetting plugins due to page load.
+2015-01-21 15:14:49.783 BasicSample[56025:11436704] Finished load of: file:///Users/gonto/Library/Developer/CoreSimulator/Devices/9BD26268-EFB1-4CE8-B748-50BC282416AD/data/Containers/Bundle/Application/8E318646-6219-4CA6-8E62-40FDB867117B/BasicSample.app/www/index.html
+2015-01-21 15:16:06.652 BasicSample[56141:11443698] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/gonto/Library/Developer/CoreSimulator/Devices/9BD26268-EFB1-4CE8-B748-50BC282416AD/data/Containers/Data/Application/50F7A993-647A-4BAA-98A3-2C5B67338B8F/Library/Cookies/Cookies.binarycookies
+2015-01-21 15:16:06.751 BasicSample[56141:11443698] Multi-tasking -> Device: YES, App: YES
+2015-01-21 15:16:06.759 BasicSample[56141:11443698] Unlimited access to network resources
+2015-01-21 15:16:06.763 BasicSample[56141:11443698] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2015-01-21 15:16:07.164 BasicSample[56141:11443698] Resetting plugins due to page load.
+2015-01-21 15:16:08.604 BasicSample[56141:11443698] Finished load of: file:///Users/gonto/Library/Developer/CoreSimulator/Devices/9BD26268-EFB1-4CE8-B748-50BC282416AD/data/Containers/Bundle/Application/C652DEA3-0C62-4078-93A4-CC05D0B0A100/BasicSample.app/www/index.html
+2015-01-21 15:16:37.696 BasicSample[56141:11443698] THREAD WARNING: ['InAppBrowser'] took '475.560059' ms. Plugin should use a background thread.
