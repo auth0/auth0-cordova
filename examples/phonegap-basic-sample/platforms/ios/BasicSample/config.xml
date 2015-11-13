@@ -19,6 +19,9 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
     <name>BasicSample</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -28,8 +31,4 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <feature name="InAppBrowser">
-        <param name="ios-package" value="CDVInAppBrowser" />
-        <param name="android-package" value="org.apache.cordova.InAppBrowser" />
-    </feature>
 </widget>

@@ -28,7 +28,7 @@
         }
     },
     "installed_plugins": {
-        "org.apache.cordova.inappbrowser": {
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.auth0.sample"
         }
     },
