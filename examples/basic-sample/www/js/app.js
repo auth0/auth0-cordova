@@ -15,7 +15,7 @@ document.addEventListener('deviceready',function() {
           console.log("There was an error");
           alert("There was an error logging in");
         } else {
-          // Success calback
+          // Success callback
 
           // Save the JWT token.
           localStorage.setItem('userToken', token);
@@ -26,7 +26,6 @@ document.addEventListener('deviceready',function() {
           $('.login-box').hide();
           $('.logged-in-box').show();
           $('.nickname').text(profile.nickname);
-          $('.nickname').text(profile.name);
           $('.avatar').attr('src', profile.picture);
         }
       });
