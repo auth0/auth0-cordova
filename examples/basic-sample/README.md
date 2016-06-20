@@ -5,10 +5,10 @@ This is the seed project you need to use if you're going to create an app that w
 ## Running the example
 
 In order to run the project, you need to have `node`, `cordova` and `ios-sim` installed.
-Once you have that, just clone the project and run the following:
+Once you have that, just clone the project and run the following to emulate project on ios platform:
 
+1. `cordova platform add ios`
 1. `cordova build ios`
 1. `cordova emulate ios`
 
 Enjoy your Cordova app now :).
-
