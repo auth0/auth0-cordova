@@ -1,0 +1,33 @@
+{
+  "name": "auth0-cordova",
+  "version": "0.1.0",
+  "description": "Auth0 + Cordova",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack -p --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/auth0/auth0-cordova.git"
+  },
+  "keywords": [
+    "auth0",
+    "cordova",
+    "phonegap",
+    "hybrid",
+    "ionic"
+  ],
+  "author": "Auth0",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/auth0/auth0-cordova/issues"
+  },
+  "homepage": "https://github.com/auth0/auth0-cordova#readme",
+  "dependencies": {
+    "auth0-js": "^8.5.0",
+    "url-parse": "^1.1.8"
+  },
+  "devDependencies": {
+    "webpack": "^2.4.1"
+  }
+}
