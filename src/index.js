@@ -28,10 +28,15 @@ function Auth0Cordova(options) {
     this.redirectUri = options.packageIdentifier + '://' + options.domain + '/cordova/' + options.packageIdentifier + '/callback';
     this.client = new auth0.Authentication({
         clientID: this.clientId,
-        domain: this.domain
+        domain: this.domain,
+        _telemetryInfo: {
+            version: Auth0Cordova.version,
+            name: 'auth0-cordova',
+        },
     });
 }
 
+Auth0Cordova.version = '0.1.1';
 
 Auth0Cordova.prototype.authorize = function (parameters, callback) {
     if (typeof parameters === 'function') {
@@ -39,9 +44,10 @@ Auth0Cordova.prototype.authorize = function (parameters, callback) {
         parameters = {};
     }
 
-    if (!cb || typeof cb === 'function') {
+    if (!callback || typeof callback !== 'function') {
         throw new Error('callback not specified or is not a function');
     }
+    var self = this;
 
     getAgent(function (err, agent) {
         if (err) {
@@ -49,10 +55,11 @@ Auth0Cordova.prototype.authorize = function (parameters, callback) {
         }
 
         var keys = generateProofKey(),
-            client = this.client,
-            redirectUri = this.redirectUri;
+            client = self.client,
+            redirectUri = self.redirectUri,
+            requestState = parameters.state || generateState();
 
-        parameters.state = parameters.state || generateState();
+        parameters.state = requestState;
 
         var params = Object.assign({}, parameters, {
             code_challenge_method: 'S256',
@@ -72,26 +79,29 @@ Auth0Cordova.prototype.authorize = function (parameters, callback) {
             }
             Auth0Cordova.newSession(function (error, url) {
                 if (error != null) {
-                    return callback(error);
+                    callback(error);
+                    return true;
                 }
 
-                var handled = url.indexOf(redirectUri) !== -1;
-                if (!handled) {
-                    return handled;
+                if (url.indexOf(redirectUri) === -1) {
+                    return false;
                 }
 
                 if (!url || typeof url !== 'string') {
-                    return callback(new Error('url must be a string'));
+                    callback(new Error('url must be a string'));
+                    return true;
                 }
 
                 var response = parse(url, true).query;
                 if (response.error) {
-                    return callback(new Error(response.error_description || response.error));
+                    callback(new Error(response.error_description || response.error));
+                    return true;
                 }
 
                 var responseState = response.state;
                 if (responseState !== requestState) {
-                    return callback(new Error('Response state does not match expected state'));
+                    callback(new Error('Response state does not match expected state'));
+                    return true;
                 }
 
                 var code = response.code;
@@ -109,7 +119,7 @@ Auth0Cordova.prototype.authorize = function (parameters, callback) {
                     return callback(null, result);
                 });
 
-                return handled;
+                return true;
             });
         });
     });

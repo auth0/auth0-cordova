@@ -1,5 +1,7 @@
 function BrowserAgent() {
     this.browser = window.SafariViewController;
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);    
 }
 
 BrowserAgent.isAvailable = function(callback) {
@@ -21,7 +23,7 @@ BrowserAgent.prototype.open = function(url, callback) {
 };
 
 BrowserAgent.prototype.close = function (){
-    this.browser.close();
+    this.browser.hide();
 };
 
 module.exports = BrowserAgent;
