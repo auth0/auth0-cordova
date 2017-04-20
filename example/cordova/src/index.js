@@ -1,4 +1,4 @@
-var Auth0Cordova = require('../../');
+var Auth0Cordova = require('../../../');
 var App = require('./App');
 
 // In a real world app, you should replace this with React

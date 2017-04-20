@@ -71,12 +71,22 @@ Auth0Cordova.prototype.authorize = function (parameters, callback) {
         var url = client.buildAuthorizeUrl(params);
 
         agent.open(url, function (error, result) {
+            
             if (error != null) {
+                Auth0Cordova.newSession(NoSession);
                 return callback(error);
             }
+            
             if (result.event === 'closed' && getOS() === 'ios') {
+                Auth0Cordova.newSession(NoSession);
                 return callback(new Error('user canceled'));
             }
+
+            if (result.event !== 'loaded') {
+                // Ignore any other events.
+                return;
+            }
+
             Auth0Cordova.newSession(function (error, url) {
                 if (error != null) {
                     callback(error);
