@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "build": "webpack -p --config webpack.config.js",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "jsdocs": "LIB_VERSION=$(node -pe \"require('./package.json').version\");jsdoc --configure .jsdoc.json --verbose;rm -Rf docs/;mv out/@auth0/cordova/$LIB_VERSION/ docs"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,10 @@
     "eslint": "3.12.2",
     "eslint-config-auth0-base": "6.0.0",
     "eslint-plugin-compat": "^1.0.0",
-    "eslint-plugin-import": "1.16.0"
+    "eslint-plugin-import": "1.16.0",
+    "jsdoc": "^3.4.3",
+    "jsdoc-to-markdown": "^2.0.1",
+    "minami": "^1.1.1"
   },
   "devDependencies": {
     "webpack": "^2.4.1"
