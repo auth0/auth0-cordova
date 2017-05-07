@@ -4,7 +4,8 @@
   "description": "Auth0 + Cordova",
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack -p --config webpack.config.js"
+    "build": "webpack -p --config webpack.config.js",
+    "lint": "eslint ./src"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,11 @@
   "homepage": "https://github.com/auth0/auth0-cordova#readme",
   "dependencies": {
     "auth0-js": "^8.5.0",
-    "url-parse": "^1.1.8"
+    "url-parse": "^1.1.8",
+    "eslint": "3.12.2",
+    "eslint-config-auth0-base": "6.0.0",
+    "eslint-plugin-compat": "^1.0.0",
+    "eslint-plugin-import": "1.16.0"
   },
   "devDependencies": {
     "webpack": "^2.4.1"
