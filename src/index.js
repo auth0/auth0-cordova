@@ -3,22 +3,19 @@ var auth0 = require('auth0-js');
 var getAgent = require('./agent');
 var crypto = require('./crypto');
 var session = require('./session');
+var getOS = require('./utils').getOS;
+var version = require('./version').raw;
 
 var generateProofKey = crypto.generateProofKey;
 var generateState = crypto.generateState;
 
 session.clean();
 
-function getOS() {
-  var userAgent = navigator.userAgent;
-  if (/android/i.test(userAgent)) {
-    return 'android';
-  }
-
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    return 'ios';
-  }
-}
+var telemetry = {
+  version: version,
+  name: 'auth0-cordova',
+  lib_version: auth0.version
+};
 
 function CordovaAuth(options) {
   this.clientId = options.clientId;
@@ -27,10 +24,7 @@ function CordovaAuth(options) {
   this.client = new auth0.Authentication({
     clientID: this.clientId,
     domain: this.domain,
-    _telemetryInfo: {
-      version: CordovaAuth.version,
-      name: 'auth0-cordova'
-    }
+    _telemetryInfo: telemetry
   });
 }
 
@@ -135,6 +129,6 @@ CordovaAuth.onRedirectUri = function (url) {
   session.onRedirectUri(url);
 };
 
-CordovaAuth.version = '0.1.0';
+CordovaAuth.version = version;
 
 module.exports = CordovaAuth;
