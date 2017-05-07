@@ -1,5 +1,5 @@
 // Fallback to old WebView where SFSafariViewController is not supported
-function WebViewAgent() {
+function WebView() {
     this.tab = null;
     this.handler = null;
     this.open = this.open.bind(this);
@@ -10,7 +10,7 @@ function WebViewAgent() {
     this.close = this.close.bind(this);    
 }
 
-WebViewAgent.prototype.open = function(url, handler) {
+WebView.prototype.open = function(url, handler) {
     var browser = cordova.InAppBrowser;
     var tab = browser.open(url, '_blank');
 
@@ -21,21 +21,21 @@ WebViewAgent.prototype.open = function(url, handler) {
     this.handler = handler;
 }
 
-WebViewAgent.prototype.handleFirstLoadEnd = function (ev) {
+WebView.prototype.handleFirstLoadEnd = function (ev) {
     this.handler(null, {event: 'loaded'});
 }
 
-WebViewAgent.prototype.handleLoadError = function (e) {
+WebView.prototype.handleLoadError = function (e) {
     this.clearEvents();
     handler(e, null);
 }
 
-WebViewAgent.prototype.handleExit = function() {
+WebView.prototype.handleExit = function() {
     this.clearEvents();
     handler(null, {event: 'closed'});
 }
 
-WebViewAgent.prototype.clearEvents = function(e) {
+WebView.prototype.clearEvents = function(e) {
     if (this.tab.null) {
         return;
     }
@@ -44,7 +44,7 @@ WebViewAgent.prototype.clearEvents = function(e) {
     this.tab.removeEventListener('exit', this.handleExit);
 }
 
-WebViewAgent.prototype.close = function () {
+WebView.prototype.close = function () {
     if (this.tab != null) {
       this.tab.close();
     }
@@ -54,4 +54,4 @@ WebViewAgent.prototype.close = function () {
 }
 
 
-module.exports = WebViewAgent;
+module.exports = WebView;

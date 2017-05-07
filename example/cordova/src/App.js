@@ -1,9 +1,9 @@
 var env =  require('../env');
 var Auth0 =  require('auth0-js');
 var decodeJwt =  require('jwt-decode');
-var Auth0Cordova =  require('../../../');
+var Auth0Cordova =  require('@auth0/cordova');
 
-function getAllBySelector(arg) { 
+function getAllBySelector(arg) {
     return document.querySelectorAll(arg);
 }
 

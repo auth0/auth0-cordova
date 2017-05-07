@@ -2,9 +2,12 @@ var parse = require('url-parse');
 var auth0 = require('auth0-js');
 var getAgent = require('./agent');
 var crypto = require('./crypto');
+var session = require('./session');
 
 var generateProofKey = crypto.generateProofKey;
 var generateState = crypto.generateState;
+
+session.clean();
 
 function getOS() {
     var userAgent = navigator.userAgent;
@@ -17,12 +20,7 @@ function getOS() {
     }
 }
 
-function NoSession() {
-    return false;
-}
-
-
-function Auth0Cordova(options) {
+function CordovaAuth(options) {
     this.clientId = options.clientId;
     this.domain = options.domain;
     this.redirectUri = options.packageIdentifier + '://' + options.domain + '/cordova/' + options.packageIdentifier + '/callback';
@@ -30,15 +28,13 @@ function Auth0Cordova(options) {
         clientID: this.clientId,
         domain: this.domain,
         _telemetryInfo: {
-            version: Auth0Cordova.version,
+            version: CordovaAuth.version,
             name: 'auth0-cordova',
         },
     });
 }
 
-Auth0Cordova.version = '0.1.1';
-
-Auth0Cordova.prototype.authorize = function (parameters, callback) {
+CordovaAuth.prototype.authorize = function (parameters, callback) {
     if (typeof parameters === 'function') {
         parameters = callback;
         parameters = {};
@@ -71,14 +67,14 @@ Auth0Cordova.prototype.authorize = function (parameters, callback) {
         var url = client.buildAuthorizeUrl(params);
 
         agent.open(url, function (error, result) {
-            
+
             if (error != null) {
-                Auth0Cordova.newSession(NoSession);
+                session.clean();
                 return callback(error);
             }
-            
+
             if (result.event === 'closed' && getOS() === 'ios') {
-                Auth0Cordova.newSession(NoSession);
+                session.clean();
                 return callback(new Error('user canceled'));
             }
 
@@ -87,7 +83,7 @@ Auth0Cordova.prototype.authorize = function (parameters, callback) {
                 return;
             }
 
-            Auth0Cordova.newSession(function (error, url) {
+            session.start(function (error, url) {
                 if (error != null) {
                     callback(error);
                     return true;
@@ -135,17 +131,9 @@ Auth0Cordova.prototype.authorize = function (parameters, callback) {
     });
 }
 
-
-Auth0Cordova.currentSession = NoSession;
-Auth0Cordova.newSession = function newSession(handler) {
-    Auth0Cordova.currentSession(new Error('Only one instance of auth can happen at a time'));
-    Auth0Cordova.currentSession = handler;
+CordovaAuth.onRedirectUri = function (url) {
+    session.onRedirectUri(url);
 }
 
-Auth0Cordova.onRedirectUri = function onRedirectUri(url) {
-    if (Auth0Cordova.currentSession(null, url)) {
-        Auth0Cordova.currentSession = NoSession;
-    }
-}
-
-module.exports = Auth0Cordova;
+CordovaAuth.version = '0.1.0';
+module.exports = CordovaAuth;
