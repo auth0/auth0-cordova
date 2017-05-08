@@ -6,12 +6,15 @@
   "scripts": {
     "build": "webpack -p --config webpack.config.js",
     "lint": "eslint ./src",
-    "jsdocs": "LIB_VERSION=$(node -pe \"require('./package.json').version\");jsdoc --configure .jsdoc.json --verbose;rm -Rf docs/;mv out/@auth0/cordova/$LIB_VERSION/ docs"
+    "jsdocs": "LIB_VERSION=$(node -pe \"require('./package.json').version\");jsdoc --configure .jsdoc.json --verbose;rm -Rf docs/;mv out/@auth0/cordova/$LIB_VERSION/ docs",
+    "ci:test": "istanbul cover _mocha --report lcovonly -R test/**/* -- -R mocha-multi --reporter-options spec=-,mocha-junit-reporter=-",
+    "test": "mocha test/**/*.tests.js",
+    "ci:coverage": "codecov"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/auth0/auth0-cordova.git"
+  "engine": {
+    "node": ">=6.9.0"
   },
+  "repository": "git+https://github.com/auth0/auth0-cordova.git",
   "keywords": [
     "auth0",
     "cordova",
@@ -34,13 +37,19 @@
     "url-parse": "^1.1.8"
   },
   "devDependencies": {
-    "webpack": "^2.4.1",
+    "chai": "^3.5.0",
+    "codecov": "^2.1.0",
     "eslint": "3.12.2",
     "eslint-config-auth0-base": "6.0.0",
     "eslint-plugin-compat": "^1.0.0",
     "eslint-plugin-import": "1.16.0",
+    "istanbul": "^0.4.5",
     "jsdoc": "^3.4.3",
     "jsdoc-to-markdown": "^2.0.1",
-    "minami": "^1.2.3"
+    "minami": "^1.2.3",
+    "mocha": "^3.3.0",
+    "mocha-junit-reporter": "^1.13.0",
+    "mocha-multi": "^0.11.0",
+    "webpack": "^2.4.1"
   }
 }
