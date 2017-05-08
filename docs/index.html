@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Home - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="CordovaAuth.html">CordovaAuth</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#authorize">authorize</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#onRedirectUri">onRedirectUri</a></span></li>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1>Auth0 Cordova</h1><h2>Setup</h2><p>Copy the contents of this library to your project in a folder named <code>auth0-cordova</code>.</p>
+<blockquote>
+<p>This library is written with JS ES6 so you might need to configure babel to transpile it to ES5 if you haven't done it for your app.</p>
+</blockquote>
+<p>Then, since the library requires these two cordova plugins to work:</p>
+<ul>
+<li>cordova-plugin-safariviewcontroller: Shows Safari/Chrome browser ViewController/CustomTab</li>
+<li>cordova-plugin-customurlscheme: Handles the custom scheme url intents for callback</li>
+</ul>
+<p>you'll need to run </p>
+<pre class="prettyprint source lang-bash"><code>cordova plugin add cordova-plugin-inappbrowser
+cordova plugin add cordova-plugin-customurlscheme --variable URL_SCHEME={application package name} --variable ANDROID_SCHEME={application package name} --variable ANDROID_HOST={auth0 domain} --variable ANDROID_PATHPREFIX=/cordova/{application package name}/callback</code></pre><blockquote>
+<p>In cordova applications, the application package name is the widget's id in the file <code>config.xml</code></p>
+</blockquote>
+<p>So if you have the following values</p>
+<ul>
+<li>application package name: com.auth0.cordova.example</li>
+<li>auth0 domain: samples.auth0.com</li>
+</ul>
+<p>in your config you should have some entries like </p>
+<pre class="prettyprint source lang-xml"><code>&lt;plugin name=&quot;cordova-plugin-customurlscheme&quot; spec=&quot;~4.2.0&quot;>
+    &lt;variable name=&quot;URL_SCHEME&quot; value=&quot;com.auth0.cordova.example&quot; />
+    &lt;variable name=&quot;ANDROID_SCHEME&quot; value=&quot;com.auth0.cordova.example&quot; />
+    &lt;variable name=&quot;ANDROID_HOST&quot; value=&quot;sample.auth0.com&quot; />
+    &lt;variable name=&quot;ANDROID_PATHPREFIX&quot; value=&quot;/cordova/com.auth0.cordova.example/callback&quot; />
+&lt;/plugin>
+&lt;plugin name=&quot;cordova-plugin-safariviewcontroller&quot; spec=&quot;~1.4.6&quot; /></code></pre><p>then in your index.js you need to register the url handler <code>ondeviceready</code></p>
+<pre class="prettyprint source lang-js"><code>import Auth0Cordova from './auth0-cordova';
+
+function main() {
+    function intentHandler(url) {
+        Auth0Cordova.onRedirectUri(url);
+    }
+    window.handleOpenURL = intentHandler;
+    // init your application
+}
+
+document.addEventListener('deviceready', main);</code></pre><p>and to use is as simple as</p>
+<pre class="prettyprint source lang-js"><code>const client = new Auth0Cordova({
+  clientId: &quot;{auth0 client id}&quot;,
+  domain: &quot;{auth0 domain}&quot;,
+  packageIdentifier: &quot;{application package name}&quot;
+});
+
+const options = {
+  scope: 'openid profile',
+};
+
+client.authorize(options, function (err, authResult) {
+  if (err) {
+    // failure
+  }
+  // success!
+});</code></pre><h2>API</h2><h3>new Auth0Cordova(options)</h3><p>Initializes a new instance of <code>Auth0Cordova</code> configured with the <code>options</code> objects whose properties are defined as follows</p>
+<ul>
+<li><strong>clientId {String}</strong>: Your application clientId in Auth0.</li>
+<li><strong>domain {String}</strong>: Your Auth0 domain. Usually your-account.auth0.com.</li>
+<li><strong>packageIdentifier {String}</strong> Your applications package identifier this is usually found as the &quot;id&quot; attribute on <widget> element in your config.json </li>
+</ul>
+<h3>authorize(options, callback)</h3><p>Initiates the options process by opening the hosted login page in the native system browser. The </p>
+<ul>
+<li><strong>options{object}</strong>: Object accepts all the parameters taken by Auth0.js' <a href="https://github.com/auth0/auth0.js#api-1">buildAuthorizeUrl method</a> except for <code>code_challenge_method</code>, <code>responseCode</code>, <code>redirectUri</code> and <code>code_challenge</code> these are generated by the library.</li>
+<li><strong>callback{function}</strong>: A callback function which will be called at the end of the authentication attempt with error or <code>null</code> as the first argument and <code>authResult</code> as the second argument. The contents of <code>authResult</code> are the same as the contents returned by Auth0.js' WebAuth's <a href="https://github.com/auth0/auth0.js#auth0webauth">parseHash</a></li>
+</ul>
+<h2>TODO</h2><ul>
+<li>[x] state verification</li>
+<li>[ ] use custom error</li>
+<li>[ ] better error handling in public API</li>
+<li>[ ] validate parameters of functions</li>
+<li>[ ] unit tests</li>
+<li>[ ] fetch package identifier automatically</li>
+<li>[ ] make it a cordova plugin</li>
+<li>[ ] configure variables on plugin install</li>
+</ul></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun May 07 2017 19:47:41 GMT-0300 (-03) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
