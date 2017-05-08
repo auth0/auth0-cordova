@@ -1,8 +1,7 @@
-# Auth0 Cordova
+## [v0.1.0](https://github.com/auth0/auth0-cordova/tree/v0.1.0) (2017-05-07)
+[Full Changelog](https://github.com/auth0/auth0-cordova/tree/v0.1.0)
 
-Library to make it easy to integrate Auth0 login in your Cordova applications.
-
-## Requirements
+### Requirements
 
 The library requires these two cordova plugins to work:
 
@@ -35,7 +34,7 @@ in your config you should have some entries like
 <plugin name="cordova-plugin-safariviewcontroller" spec="~1.4.6" />
 ```
 
-## Setup
+### Setup
 
 From [npm](https://npmjs.org)
 
@@ -59,7 +58,7 @@ function main() {
 document.addEventListener('deviceready', main);
 ```
 
-## Usage
+### Usage
 
 ```js
 const auth0 = new Auth0Cordova({
@@ -81,21 +80,3 @@ client.authorize(options, function (err, result) {
 ```
 
 This will open your tenant's hosted login page in the OS browser and will use OAuth 2.0 code grant flow with [Proof Key for Code Exchange](https://tools.ietf.org/html/rfc7636).
-
-## API
-
-For more information about our API please check our [online documentation](https://auth0.github.io/auth0-cordova/)
-
-## Issue Reporting
-
-If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
-
-For auth0 related questions/support please use the [Support Center](https://support.auth0.com).
-
-## Author
-
-[Auth0](auth0.com)
-
-## License
-
-This project is licensed under the MIT license. See the [LICENSE](LICENSE.txt) file for more info.
