@@ -12,7 +12,7 @@ The library requires these two cordova plugins to work:
 you'll need to run
 
 ```bash
-cordova plugin add cordova-plugin-inappbrowser
+cordova plugin add cordova-plugin-safariviewcontroller
 cordova plugin add cordova-plugin-customurlscheme --variable URL_SCHEME={application package name} --variable ANDROID_SCHEME={application package name} --variable ANDROID_HOST={auth0 domain} --variable ANDROID_PATHPREFIX=/cordova/{application package name}/callback
 ```
 
