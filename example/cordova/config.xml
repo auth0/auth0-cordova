@@ -30,7 +30,7 @@
     <plugin name="cordova-plugin-customurlscheme" spec="~4.2.0">
         <variable name="URL_SCHEME" value="com.auth0.cordova.example" />
         <variable name="ANDROID_SCHEME" value="com.auth0.cordova.example" />
-        <variable name="ANDROID_HOST" value="auir.auth0.com" />
+        <variable name="ANDROID_HOST" value="tenant.auth0.com" />
         <variable name="ANDROID_PATHPREFIX" value="/cordova/com.auth0.cordova.example/callback" />
     </plugin>
 </widget>
