@@ -82,6 +82,10 @@ client.authorize(options, function (err, result) {
 
 This will open your tenant's hosted login page in the OS browser and will use OAuth 2.0 code grant flow with [Proof Key for Code Exchange](https://tools.ietf.org/html/rfc7636).
 
+## API
+
+For more information about our API please check our [online documentation](https://auth0.github.io/auth0-cordova/)
+
 ## Issue Reporting
 
 If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
