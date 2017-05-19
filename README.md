@@ -26,6 +26,7 @@ So if you have the following values
 in your config you should have some entries like
 
 ```xml
+<preference name="AndroidLaunchMode" value="singleTask" />
 <plugin name="cordova-plugin-customurlscheme" spec="~4.2.0">
     <variable name="URL_SCHEME" value="com.auth0.cordova.example" />
     <variable name="ANDROID_SCHEME" value="com.auth0.cordova.example" />
