@@ -10,9 +10,23 @@ Clone the repo and install the dependencies.
 npm install
 ```
 
+## Build the Auth0 Cordova library
+
+This example relies on a local build of the Auth0 Cordova library. To create it change to the top level of your checkout and execute the following:
+
+```bash
+npm install
+npm run build
+```
 ## Set Auth0 Variable
 
 Rename the `auth0-variables.ts.example` file to `auth0-variables.ts` and populate it with your application's  Auth0 client ID and domain.
+
+## Add to the Allowed Callback URLs for your Auth0 Client
+
+The easiest way to get the correct URL is to run the example and perform a login. It will fail with `Callback URL Mismatch` displayed. On your Auth0 dashboard click the `Logs` link and click on the latest `Failed Login` entry. Copy the URL from the error message and paste it in the `Allowed Callback URLs` text entry field for your Client and save. If you have multiple entries they must be separated by commas.
+
+`e.g. com.example.demo://example.auth0.com/cordova/com.example.demo/callback`
 
 ## Add the `InAppBrowser` Plugin
 
