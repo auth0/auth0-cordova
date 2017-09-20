@@ -24,6 +24,7 @@ var telemetry = {
  * @param {Object} options
  * @param {String} options.domain your Auth0 domain
  * @param {String} options.clientId your Auth0 client identifier obtained when creating the client in the Auth0 Dashboard
+ * @param {String} options.packageIdentifier package identifier from config.xml
  * @see {@link https://auth0.com/docs/api/authentication}
  */
 function CordovaAuth(options) {
