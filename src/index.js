@@ -132,13 +132,14 @@ CordovaAuth.prototype.authorize = function (parameters, callback) {
 
         var code = response.code;
         var verifier = keys.codeVerifier;
+        agent.close();
+
         client.oauthToken({
           code_verifier: verifier,
           grantType: 'authorization_code',
           redirectUri: redirectUri,
           code: code
         }, function (exchangeError, exchangeResult) {
-          agent.close();
           if (exchangeError) {
             return callback(exchangeError);
           }
@@ -163,7 +164,15 @@ CordovaAuth.prototype.authorize = function (parameters, callback) {
  * @param {String} url with a custom scheme relied to the application
  */
 CordovaAuth.onRedirectUri = function (url) {
-  session.onRedirectUri(url);
+  // If we are running in UIWebView we need to wait
+
+  if (window.webkit && window.webkit.messageHandlers) {
+    return session.onRedirectUri(url);
+  }
+  
+  return setTimeout(function () {
+    session.onRedirectUri(url);
+  }, 4);
 };
 
 CordovaAuth.version = version;

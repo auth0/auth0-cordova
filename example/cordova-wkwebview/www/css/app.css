@@ -1,0 +1,42 @@
+.page{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex.full-page{
+    width: 100%;
+    height: 100%;
+}
+
+.flex.col{
+    flex-direction: column;
+}
+.flex.hor-centered{
+    justify-content: center;
+}
+
+.flex.abs-centered{
+    justify-content: center;
+    align-items: center;
+}
+
+.flex > .expand-to-fill{
+    flex: 1;
+}
+
+.page{
+    padding: 15px 10px;
+}
+
+.profile-json{
+    display: block;
+    white-space: pre;
+    overflow: scroll;
+}
