@@ -1,3 +1,11 @@
+# Change Log
+
+## [v0.2.0](https://github.com/auth0/auth0-cordova/tree/v0.2.0) (2017-07-07)
+[Full Changelog](https://github.com/auth0/auth0-cordova/compare/v0.1.0...v0.2.0)
+
+**Changed**
+- Handle InAppBrowser exit event correctly [\#34](https://github.com/auth0/auth0-cordova/pull/34) ([decates](https://github.com/decates))
+
 ## [v0.1.0](https://github.com/auth0/auth0-cordova/tree/v0.1.0) (2017-05-07)
 [Full Changelog](https://github.com/auth0/auth0-cordova/tree/v0.1.0)
 

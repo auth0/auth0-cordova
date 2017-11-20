@@ -2,6 +2,11 @@ function Session() {}
 
 Session.clean = function () {
   Session.current = function () { return false; };
+  Session.isClosing = false;
+};
+
+Session.closing = function () {
+  Session.isClosing = true;
 };
 
 Session.start = function (handler) {

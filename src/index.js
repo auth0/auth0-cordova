@@ -8,6 +8,7 @@ var version = require('./version').raw;
 
 var generateProofKey = crypto.generateProofKey;
 var generateState = crypto.generateState;
+var closingDelayMs = 1000;
 
 session.clean();
 
@@ -93,9 +94,21 @@ CordovaAuth.prototype.authorize = function (parameters, callback) {
         return callback(error);
       }
 
-      if (result.event === 'closed' && getOS() === 'ios') {
-        session.clean();
-        return callback(new Error('user canceled'));
+      if (result.event === 'closed') {
+        var handleClose = function () {
+          if (session.isClosing) {
+            session.clean();
+            return callback(new Error('user canceled'));
+          }
+        };
+
+        session.closing();
+        if (getOS() === 'ios') {
+          handleClose();
+        } else {
+          setTimeout(handleClose, closingDelayMs);
+          return;
+        }
       }
 
       if (result.event !== 'loaded') {
