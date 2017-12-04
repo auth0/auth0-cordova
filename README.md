@@ -73,7 +73,7 @@ const options = {
   scope: 'openid profile',
 };
 
-client.authorize(options, function (err, result) {
+auth0.authorize(options, function (err, result) {
   if (err) {
     // failure
   }
