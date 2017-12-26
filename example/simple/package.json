@@ -1,0 +1,35 @@
+{
+    "name": "com.auth0.example.cordova",
+    "displayName": "HelloCordova",
+    "version": "1.0.0",
+    "description": "A sample Apache Cordova application that responds to the deviceready event.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Apache Cordova Team",
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "cordova": "^8.0.0"
+    },
+    "dependencies": {
+        "cordova-ios": "^4.5.4",
+        "cordova-plugin-customurlscheme": "^4.3.0",
+        "cordova-plugin-inappbrowser": "^1.7.2",
+        "cordova-plugin-safariviewcontroller": "^1.5.2",
+        "cordova-plugin-whitelist": "^1.3.3"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-inappbrowser": {},
+            "cordova-plugin-safariviewcontroller": {},
+            "cordova-plugin-customurlscheme": {
+                "URL_SCHEME": "com.auth0samplescordova.simple"
+            }
+        },
+        "platforms": [
+            "ios"
+        ]
+    }
+}
