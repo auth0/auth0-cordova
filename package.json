@@ -14,7 +14,7 @@
   "engine": {
     "node": ">=6.9.0"
   },
-  "repository": "git+https://github.com/auth0/auth0-cordova.git",
+  "repository": "git+https://github.com/stetsmando/auth0-cordova.git",
   "keywords": [
     "auth0",
     "cordova",
@@ -29,9 +29,9 @@
   "author": "Auth0",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/auth0/auth0-cordova/issues"
+    "url": "https://github.com/stetsmando/auth0-cordova/issues"
   },
-  "homepage": "https://github.com/auth0/auth0-cordova#readme",
+  "homepage": "https://github.com/stetsmando/auth0-cordova#readme",
   "dependencies": {
     "auth0-js": "^9.0.0",
     "crypto-browserify": "^3.12.0",
