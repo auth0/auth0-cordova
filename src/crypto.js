@@ -1,4 +1,4 @@
-var crypto = require('crypto');
+var crypto = require('crypto-browserify');
 
 function base64UrlSafeEncode(string) {
   return string.toString('base64')

@@ -1,4 +1,6 @@
-# Auth0 Cordova
+# Auth0 Cordova (FORK)
+
+"I foreked this repo because I was in need of a quick fix that couldn't wait for the PR process. The crypto.js file is requiring `crypto` which has been depricated. I've updated it to use `crypto-browserify` to resolve the issue quickly with the same functionality" -- Stetson
 
 Library to make it easy to integrate Auth0 login in your Cordova applications.
 

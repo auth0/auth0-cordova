@@ -1,5 +1,5 @@
 {
-  "name": "@auth0/cordova",
+  "name": "cordova-plugin-auth0",
   "version": "0.3.0",
   "description": "Auth0 integration for Cordova applications",
   "main": "src/index.js",
@@ -14,7 +14,7 @@
   "engine": {
     "node": ">=6.9.0"
   },
-  "repository": "git+https://github.com/auth0/auth0-cordova.git",
+  "repository": "git+https://github.com/stetsmando/auth0-cordova.git",
   "keywords": [
     "auth0",
     "cordova",
@@ -29,11 +29,12 @@
   "author": "Auth0",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/auth0/auth0-cordova/issues"
+    "url": "https://github.com/stetsmando/auth0-cordova/issues"
   },
-  "homepage": "https://github.com/auth0/auth0-cordova#readme",
+  "homepage": "https://github.com/stetsmando/auth0-cordova#readme",
   "dependencies": {
     "auth0-js": "^9.0.0",
+    "crypto-browserify": "^3.12.0",
     "url-parse": "^1.1.8"
   },
   "devDependencies": {
