@@ -1,5 +1,5 @@
 {
-  "name": "@auth0/cordova",
+  "name": "cordova-plugin-auth0",
   "version": "0.3.0",
   "description": "Auth0 integration for Cordova applications",
   "main": "src/index.js",
@@ -34,6 +34,7 @@
   "homepage": "https://github.com/auth0/auth0-cordova#readme",
   "dependencies": {
     "auth0-js": "^9.0.0",
+    "crypto-browserify": "^3.12.0",
     "url-parse": "^1.1.8"
   },
   "devDependencies": {
