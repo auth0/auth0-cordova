@@ -217,8 +217,9 @@ CordovaAuth.prototype.authorizeWindows = function (parameters, callback) {
     }
     var authorizeUrl = self._buildAuthorizeUrlHelper(parameters);
     var params = {requestUri: authorizeUrl, redirectUri: self.redirectUri};
-    cordova.UWPOAuth.open(function(sessionError, redirectResponseUrl) {
-        self._parseAuthorizeResponse(sessionError, redirectResponseUrl, callback);
+    cordova.UWPOAuth.open(function(response) {
+        // the response from the plugin will be { error: {null|string}, redirectUrl: {null|string} }
+        self._parseAuthorizeResponse(response.error, response.redirectUrl, callback);
     }, function (error) {
         callback(error);
     }, params);
