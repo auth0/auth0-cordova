@@ -9,6 +9,13 @@ The library requires these two cordova plugins to work:
 - cordova-plugin-safariviewcontroller: Shows Safari/Chrome browser ViewController/CustomTab
 - cordova-plugin-customurlscheme: Handles the custom scheme url intents for callback
 
+For use with windows native applications, another plugin is needed.
+You'll need to add this plugin to config.xml by hand:
+```
+<plugin name="cordova-plugin-uwp-oauth" spec="https://github.com/zenput/cordova-plugin-uwp-oauth#2a15357ad88c90e1afb43200ff519552026c420b" />
+```
+
+
 you'll need to run
 
 ```bash
@@ -82,6 +89,8 @@ auth0.authorize(options, function (err, result) {
 ```
 
 This will open your tenant's hosted login page in the OS browser and will use OAuth 2.0 code grant flow with [Proof Key for Code Exchange](https://tools.ietf.org/html/rfc7636).
+
+Use the authorizeWindows method instead if on a windows native platform.
 
 ## API
 

@@ -66,33 +66,15 @@ function CordovaAuth(options) {
  */
 CordovaAuth.prototype.authorize = function (parameters, callback) {
   if (!callback || typeof callback !== 'function') {
-    throw new Error('callback not specified or is not a function');
+      throw new Error('callback not specified or is not a function');
   }
-
   var self = this;
-
   getAgent(function (err, agent) {
     if (err) {
       return callback(err);
     }
-
-    var keys = generateProofKey();
-    var client = self.client;
-    var redirectUri = self.redirectUri;
-    var requestState = parameters.state || generateState();
-
-    parameters.state = requestState;
-
-    var params = Object.assign({}, parameters, {
-      code_challenge_method: 'S256',
-      responseType: 'code',
-      redirectUri: redirectUri,
-      code_challenge: keys.codeChallenge
-    });
-
-    var url = client.buildAuthorizeUrl(params);
-
-    agent.open(url, function (error, result) {
+    var authorizeUrl = self._buildAuthorizeUrlHelper(parameters);
+    agent.open(authorizeUrl, function (error, result) {
       if (error != null) {
         session.clean();
         return callback(error);
@@ -111,62 +93,136 @@ CordovaAuth.prototype.authorize = function (parameters, callback) {
           handleClose();
         } else {
           setTimeout(handleClose, closingDelayMs);
-          return;
+          return null;
         }
       }
 
       if (result.event !== 'loaded') {
         // Ignore any other events.
-        return;
+        return null;
       }
-
-      session.start(function (sessionError, redirectUrl) {
-        if (sessionError != null) {
-          callback(sessionError);
-          return true;
-        }
-
-        if (redirectUrl.indexOf(redirectUri) === -1) {
-          return false;
-        }
-
-        if (!redirectUrl || typeof redirectUrl !== 'string') {
-          callback(new Error('url must be a string'));
-          return true;
-        }
-
-        var response = parse(redirectUrl, true).query;
-        if (response.error) {
-          callback(new Error(response.error_description || response.error));
-          return true;
-        }
-
-        var responseState = response.state;
-        if (responseState !== requestState) {
-          callback(new Error('Response state does not match expected state'));
-          return true;
-        }
-
-        var code = response.code;
-        var verifier = keys.codeVerifier;
-        agent.close();
-
-        client.oauthToken({
-          code_verifier: verifier,
-          grantType: 'authorization_code',
-          redirectUri: redirectUri,
-          code: code
-        }, function (exchangeError, exchangeResult) {
-          if (exchangeError) {
-            return callback(exchangeError);
-          }
-          return callback(null, exchangeResult);
-        });
-
-        return true;
+      session.start(function(sessionError, redirectUrl) {
+        self._parseAuthorizeResponse(sessionError, redirectUrl, callback, agent);
       });
     });
   });
+};
+
+/**
+ * Build auth url helper
+ * Note this also sets the request state and the verifier on the instance
+ *
+ * @param parameters
+ * @returns authorizationUrl - string
+ * @private
+ */
+CordovaAuth.prototype._buildAuthorizeUrlHelper = function(parameters) {
+    var self = this;
+    var keys = generateProofKey();
+    var client = self.client;
+    var redirectUri = self.redirectUri;
+    var requestState = parameters.state || generateState();
+    self.requestState = requestState;
+    self.verifier = keys.codeVerifier;
+    parameters.state = requestState;
+
+    var params = Object.assign({}, parameters, {
+      code_challenge_method: 'S256',
+      responseType: 'code',
+      redirectUri: redirectUri,
+      code_challenge: keys.codeChallenge
+    });
+
+    return client.buildAuthorizeUrl(params);
+};
+
+/**
+ * Common handler for the authorization response
+ *
+ * @param {Object} sessionError
+ * @param {String} redirectUrl
+ * @param {callback} callback
+ * @param {Object} agent
+ * @returns null
+ * @private
+ */
+CordovaAuth.prototype._parseAuthorizeResponse = function(sessionError, redirectUrl, callback, agent) {
+    if (sessionError != null) {
+        callback(sessionError);
+        return null;
+    }
+
+    if (redirectUrl.indexOf(this.redirectUri) === -1) {
+        return null;
+    }
+
+    if (!redirectUrl || typeof redirectUrl !== 'string') {
+        callback(new Error('url must be a string'));
+        return null;
+    }
+
+    var response = parse(redirectUrl, true).query;
+    if (response.error) {
+        callback(new Error(response.error_description || response.error));
+        return null;
+    }
+
+    var responseState = response.state;
+    if (responseState !== this.requestState) {
+        callback(new Error('Response state does not match expected state'));
+        return null;
+    }
+
+    var code = response.code;
+    this.client.oauthToken({
+        code_verifier: this.verifier,
+        grantType: 'authorization_code',
+        redirectUri: this.redirectUri,
+        code: code
+    }, function (exchangeError, exchangeResult) {
+        if (agent) {
+          agent.close();
+        }
+        if (exchangeError) {
+            return callback(exchangeError);
+        }
+        return callback(null, exchangeResult);
+    });
+
+    return null;
+};
+
+/**
+ * /**
+ * Opens the OS browser and redirects to `{domain}/authorize` url in order to initialize a new authN/authZ transaction
+ *
+ * @method authorize
+ * @param {Object} parameters
+ * @param {String} [parameters.state] value used to mitigate XSRF attacks. {@link https://auth0.com/docs/protocols/oauth2/oauth-state}
+ * @param {String} [parameters.nonce] value used to mitigate replay attacks when using Implicit Grant. {@link https://auth0.com/docs/api-auth/tutorials/nonce}
+ * @param {String} [parameters.scope] scopes to be requested during Auth. e.g. `openid email`
+ * @param {String} [parameters.audience] identifier of the resource server who will consume the access token issued after Auth
+ * @param {authorizeCallback} callback
+ * @see {@link https://auth0.com/docs/api/authentication#authorize-client}
+ * @see {@link https://auth0.com/docs/api/authentication#social}
+ */
+CordovaAuth.prototype.authorizeWindows = function (parameters, callback) {
+    if (typeof(cordova) == undefined || !cordova.UWPOAuth) {
+        throw new Error("You have to have the cordova-plugin-uwp-oauth plugin installed.");
+    }
+
+    var self = this;
+    if (!callback || typeof callback !== 'function') {
+      throw new Error('callback not specified or is not a function');
+    }
+    var authorizeUrl = self._buildAuthorizeUrlHelper(parameters);
+    var params = {requestUri: authorizeUrl, redirectUri: self.redirectUri};
+    cordova.UWPOAuth.open(function(response) {
+        // the response from the plugin will be { error: {null|string}, redirectUrl: {null|string} }
+        self._parseAuthorizeResponse(response.error, response.redirectUrl, callback);
+    }, function (error) {
+        callback(error);
+    }, params);
 };
 
 /**
