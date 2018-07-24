@@ -174,22 +174,22 @@ CordovaAuth.prototype._parseAuthorizeResponse = function(sessionError, redirectU
     }
 
     var code = response.code;
+    if (agent) {
+      agent.close();
+    }
     this.client.oauthToken({
         code_verifier: this.verifier,
         grantType: 'authorization_code',
         redirectUri: this.redirectUri,
         code: code
     }, function (exchangeError, exchangeResult) {
-        if (agent) {
-          agent.close();
-        }
         if (exchangeError) {
             return callback(exchangeError);
         }
         return callback(null, exchangeResult);
     });
 
-    return null;
+    return true;
 };
 
 /**
