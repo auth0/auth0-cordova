@@ -29,6 +29,9 @@ jobs:
           name: Lint
           command: yarn run lint
       - run: 
+          name: Run Tests
+          command: yarn run ci:test
+      - run: 
           name: Generate Coverage
           command: yarn run ci:coverage
       - store_artifacts:
