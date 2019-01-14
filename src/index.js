@@ -31,7 +31,11 @@ function CordovaAuth(options) {
   this.clientId = options.clientId;
   this.domain = options.domain;
   this.redirectUri = options.packageIdentifier + '://' + options.domain + '/cordova/' + options.packageIdentifier + '/callback';
-  this.client = new auth0.Authentication({
+  this.auth0 = new auth0.WebAuth({
+    clientID: this.clientId,
+    domain: this.domain
+  });
+  this.client = new auth0.Authentication(this.auth0, {
     clientID: this.clientId,
     domain: this.domain,
     _telemetryInfo: telemetry
@@ -146,13 +150,14 @@ CordovaAuth.prototype.authorize = function (parameters, callback) {
 
         var code = response.code;
         var verifier = keys.codeVerifier;
+        agent.close();
+
         client.oauthToken({
           code_verifier: verifier,
           grantType: 'authorization_code',
           redirectUri: redirectUri,
           code: code
         }, function (exchangeError, exchangeResult) {
-          agent.close();
           if (exchangeError) {
             return callback(exchangeError);
           }
@@ -177,7 +182,14 @@ CordovaAuth.prototype.authorize = function (parameters, callback) {
  * @param {String} url with a custom scheme relied to the application
  */
 CordovaAuth.onRedirectUri = function (url) {
-  session.onRedirectUri(url);
+  // If we are running in UIWebView we need to wait
+  if (window.webkit && window.webkit.messageHandlers) {
+    return session.onRedirectUri(url);
+  }
+
+  return setTimeout(function () {
+    session.onRedirectUri(url);
+  }, 4);
 };
 
 CordovaAuth.version = version;

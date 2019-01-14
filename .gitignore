@@ -1,6 +1,7 @@
 *.log
 node_modules
 out/
-dist/
 coverage/
 test-results.xml
+build
+dist

@@ -1,6 +1,6 @@
 {
   "name": "@auth0/cordova",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Auth0 integration for Cordova applications",
   "main": "src/index.js",
   "scripts": {
@@ -33,8 +33,8 @@
   },
   "homepage": "https://github.com/auth0/auth0-cordova#readme",
   "dependencies": {
-    "auth0-js": "^8.5.0",
-    "url-parse": "^1.1.8"
+    "auth0-js": "^9.3.0",
+    "url-parse": "^1.4.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -46,9 +46,10 @@
     "istanbul": "^0.4.5",
     "jsdoc": "^3.4.3",
     "jsdoc-to-markdown": "^2.0.1",
+    "marked": "^0.3.9",
     "minami": "^1.2.3",
     "mocha": "^3.3.0",
-    "mocha-junit-reporter": "^1.13.0",
+    "mocha-junit-reporter": "^1.17.0",
     "mocha-multi": "^0.11.0",
     "webpack": "^2.4.1"
   }

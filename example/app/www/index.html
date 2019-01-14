@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com https://auth0conciergedemos.auth0.com; style-src 'self' 'unsafe-inline' https://cdn.auth0.com; media-src *; img-src https:; font-src https://cdn.auth0.com;" />
+
+    <link href="https://cdn.auth0.com/styleguide/4.8.33/index.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
+    <title>Hello World</title>
+</head>
+
+<body>
+    <!-- HTML is my templating engine -->
+    <!-- and CSS is my router -->
+    <div class="app" id="app">
+    </div>
+    <template id="loading">
+        <div class="page">
+            <div class="flex col abs-centered full-page">
+                <div class="spinner spinner-lg is-auth0">
+                    <div class="circle"></div>
+                </div>
+                <h3>Auth0</h3>
+            </div>
+        </div>
+    </template>
+    <template id="login">
+        <div class="page">
+            <div class="flex col full-page">
+                <div class="expand-to-fill flex abs-centered">
+                    <div>
+                        <h1>Auth0</h1>
+                        <h2>Hybrid Quickstart</h2>
+                        <p>Please click the button to login using the hosted login page. You can edit the page at <a href="https://manage.auth0.com/#/login_page">Dashboard > Hosted Page</a></p>
+                    </div>
+                </div>
+                <hr />
+                <div class="flex hor-centered">
+                    <button class="btn btn-success btn-login">
+                        <span class="btn-icon icon-budicon-120"></span>
+                        <span>Login using Auth0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="profile">
+        <div class="page">
+            <div>
+                <h1>Auth0</h1>
+                <h2>Hybrid Quickstart</h2>
+            </div>
+            <br />
+            <code class="profile-json code-picker">loading...</code>
+            <br />
+            <p>The above is the response from <code>/userinfo</code> endpoint.</p>
+            <hr />
+            <div class="flex hor-centered">
+                <button class="btn btn-success btn-logout">
+                    <span class="btn-icon icon-budicon-120"></span>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </template>
+    <script src="cordova.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

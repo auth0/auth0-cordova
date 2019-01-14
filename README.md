@@ -73,7 +73,7 @@ const options = {
   scope: 'openid profile',
 };
 
-client.authorize(options, function (err, result) {
+auth0.authorize(options, function (err, result) {
   if (err) {
     // failure
   }
@@ -92,6 +92,17 @@ For more information about our API please check our [online documentation](https
 If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
 
 For auth0 related questions/support please use the [Support Center](https://support.auth0.com).
+
+## Common Issues
+
+1. The plugin is not working in Ionic / Cordova dev app. 
+
+   The plugin needs to be deployed on a real device to function, this is so because the dev apps do not add the necessary plugins needed for this library to function correctly. You'll need to either create a clone / fork of the Dev App or need to deploy it to a real device to test. 
+
+2. The app hangs after authentication 
+
+   If 1 does not solve your problem, please make sure you have `cordova-plugin-customurlscheme` installed or an appropirate plugin to handle the callback (like deeplinks / universal links) and you are handling the callback appropriately
+
 
 ## Author
 
