@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/auth0/auth0-cordova#readme",
   "dependencies": {
-    "auth0-js": "^9.3.0",
+    "auth0-js": "^9.4.2",
     "url-parse": "^1.4.3"
   },
   "devDependencies": {
