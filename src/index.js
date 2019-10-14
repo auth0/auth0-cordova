@@ -13,9 +13,12 @@ var closingDelayMs = 1000;
 session.clean();
 
 var telemetry = {
-  version: version,
   name: 'auth0-cordova',
-  lib_version: auth0.version
+  version: version,
+  env: {
+    'auth0.js': '9.4.2',
+    os: getOS()
+  }
 };
 
 /**
