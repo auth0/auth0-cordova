@@ -16,7 +16,7 @@ var telemetry = {
   name: 'auth0-cordova',
   version: version,
   env: {
-    'auth0.js': '9.4.2',
+    'auth0.js': auth0.version,
     os: getOS()
   }
 };
