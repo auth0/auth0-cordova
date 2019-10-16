@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.4.0](https://github.com/auth0/auth0-cordova/tree/v0.4.0) (2019-10-16)
+[Full Changelog](https://github.com/auth0/auth0-cordova/compare/v0.3.0...v0.4.0)
+
+**Changed**
+- Reformatted telemetry object [\#110](https://github.com/auth0/auth0-cordova/pull/110) ([stevehobbsdev](https://github.com/stevehobbsdev))
+- Updated dependencies to fix vulnerabilities [\#111](https://github.com/auth0/auth0-cordova/pull/111) ([stevehobbsdev](https://github.com/stevehobbsdev))
+
+## [v0.3.0](https://github.com/auth0/auth0-cordova/tree/v0.4.0) (2017-12-26)
+[Full Changelog](https://github.com/auth0/auth0-cordova/compare/v0.2.0...v0.3.0)
+
+**Changed**
+- Deprecate Cordova sample [\#47](https://github.com/auth0/auth0-cordova/pull/47) ([chenkie](https://github.com/chenkie))
+-  Docs refer to client but it doesn't exist [\#61](https://github.com/auth0/auth0-cordova/pull/47) ([JohnMcLear](https://github.com/JohnMcLear))
+- Updated Auth0.js version to 9.0.0 [\#53](https://github.com/auth0/auth0-cordova/pull/53) ([aaguiarz](https://github.com/aaguiarz))
+- Update to handle Auth0.js 9 and Update Example to Cordova 8.0 ([faafd9](https://github.com/auth0/auth0-cordova/commit/faafd9644f06853b55df516cbd2915b1a1eeead5)) ([darkyen](https://github.com/darkyen))
+
 ## [v0.2.0](https://github.com/auth0/auth0-cordova/tree/v0.2.0) (2017-07-07)
 [Full Changelog](https://github.com/auth0/auth0-cordova/compare/v0.1.0...v0.2.0)
 
