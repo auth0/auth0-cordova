@@ -1,6 +1,6 @@
 {
   "name": "@auth0/cordova",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Auth0 integration for Cordova applications",
   "main": "src/index.js",
   "scripts": {
