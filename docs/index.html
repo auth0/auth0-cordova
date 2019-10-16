@@ -48,15 +48,19 @@
 
 
     <section class="readme">
-        <article><h1>Auth0 Cordova</h1><p>Library to make it easy to integrate Auth0 login in your Cordova applications.</p>
-<h2>Requirements</h2><p>The library requires these two cordova plugins to work:</p>
+        <article><h1>Auth0 Cordova</h1>
+<p>Library to make it easy to integrate Auth0 login in your Cordova applications.</p>
+<h2>Requirements</h2>
+<p>The library requires these two cordova plugins to work:</p>
 <ul>
 <li>cordova-plugin-safariviewcontroller: Shows Safari/Chrome browser ViewController/CustomTab</li>
 <li>cordova-plugin-customurlscheme: Handles the custom scheme url intents for callback</li>
 </ul>
 <p>you'll need to run</p>
-<pre class="prettyprint source lang-bash"><code>cordova plugin add cordova-plugin-inappbrowser
-cordova plugin add cordova-plugin-customurlscheme --variable URL_SCHEME={application package name} --variable ANDROID_SCHEME={application package name} --variable ANDROID_HOST={auth0 domain} --variable ANDROID_PATHPREFIX=/cordova/{application package name}/callback</code></pre><blockquote>
+<pre class="prettyprint source lang-bash"><code>cordova plugin add cordova-plugin-safariviewcontroller
+cordova plugin add cordova-plugin-customurlscheme --variable URL_SCHEME={application package name} --variable ANDROID_SCHEME={application package name} --variable ANDROID_HOST={auth0 domain} --variable ANDROID_PATHPREFIX=/cordova/{application package name}/callback
+</code></pre>
+<blockquote>
 <p>In cordova applications, the application package name is the widget's identifier in <code>config.xml</code></p>
 </blockquote>
 <p>So if you have the following values</p>
@@ -65,14 +69,20 @@ cordova plugin add cordova-plugin-customurlscheme --variable URL_SCHEME={applica
 <li>auth0 domain: samples.auth0.com</li>
 </ul>
 <p>in your config you should have some entries like</p>
-<pre class="prettyprint source lang-xml"><code>&lt;plugin name=&quot;cordova-plugin-customurlscheme&quot; spec=&quot;~4.2.0&quot;>
+<pre class="prettyprint source lang-xml"><code>&lt;preference name=&quot;AndroidLaunchMode&quot; value=&quot;singleTask&quot; />
+&lt;plugin name=&quot;cordova-plugin-customurlscheme&quot; spec=&quot;~4.2.0&quot;>
     &lt;variable name=&quot;URL_SCHEME&quot; value=&quot;com.auth0.cordova.example&quot; />
     &lt;variable name=&quot;ANDROID_SCHEME&quot; value=&quot;com.auth0.cordova.example&quot; />
     &lt;variable name=&quot;ANDROID_HOST&quot; value=&quot;sample.auth0.com&quot; />
     &lt;variable name=&quot;ANDROID_PATHPREFIX&quot; value=&quot;/cordova/com.auth0.cordova.example/callback&quot; />
 &lt;/plugin>
-&lt;plugin name=&quot;cordova-plugin-safariviewcontroller&quot; spec=&quot;~1.4.6&quot; /></code></pre><h2>Setup</h2><p>From <a href="https://npmjs.org">npm</a></p>
-<pre class="prettyprint source lang-sh"><code>npm install @auth0/cordova</code></pre><p>then in your index.js you need to register the url handler <code>ondeviceready</code></p>
+&lt;plugin name=&quot;cordova-plugin-safariviewcontroller&quot; spec=&quot;~1.4.6&quot; />
+</code></pre>
+<h2>Setup</h2>
+<p>From <a href="https://npmjs.org">npm</a></p>
+<pre class="prettyprint source lang-sh"><code>npm install @auth0/cordova
+</code></pre>
+<p>then in your index.js you need to register the url handler <code>ondeviceready</code></p>
 <pre class="prettyprint source lang-js"><code>var Auth0Cordova = require('@auth0/cordova');
 
 function main() {
@@ -83,7 +93,10 @@ function main() {
     // init your application
 }
 
-document.addEventListener('deviceready', main);</code></pre><h2>Usage</h2><pre class="prettyprint source lang-js"><code>const auth0 = new Auth0Cordova({
+document.addEventListener('deviceready', main);
+</code></pre>
+<h2>Usage</h2>
+<pre class="prettyprint source lang-js"><code>const auth0 = new Auth0Cordova({
   domain: &quot;{YOUR_AUTH0_DOMAIN}&quot;,
   clientId: &quot;{YOUR_AUTH0_CLIENT_ID}&quot;,
   packageIdentifier: &quot;{WIDGET_ID_IN_CONFIG_XML}&quot;
@@ -93,17 +106,34 @@ const options = {
   scope: 'openid profile',
 };
 
-client.authorize(options, function (err, result) {
+auth0.authorize(options, function (err, result) {
   if (err) {
     // failure
   }
   // success!
-});</code></pre><p>This will open your tenant's hosted login page in the OS browser and will use OAuth 2.0 code grant flow with <a href="https://tools.ietf.org/html/rfc7636">Proof Key for Code Exchange</a>.</p>
-<h2>API</h2><p>For more information about our API please check our <a href="https://auth0.github.io/auth0-cordova/">online documentation</a></p>
-<h2>Issue Reporting</h2><p>If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The <a href="https://auth0.com/whitehat">Responsible Disclosure Program</a> details the procedure for disclosing security issues.</p>
+});
+</code></pre>
+<p>This will open your tenant's hosted login page in the OS browser and will use OAuth 2.0 code grant flow with <a href="https://tools.ietf.org/html/rfc7636">Proof Key for Code Exchange</a>.</p>
+<h2>API</h2>
+<p>For more information about our API please check our <a href="https://auth0.github.io/auth0-cordova/">online documentation</a></p>
+<h2>Issue Reporting</h2>
+<p>If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The <a href="https://auth0.com/whitehat">Responsible Disclosure Program</a> details the procedure for disclosing security issues.</p>
 <p>For auth0 related questions/support please use the <a href="https://support.auth0.com">Support Center</a>.</p>
-<h2>Author</h2><p><a href="auth0.com">Auth0</a></p>
-<h2>License</h2><p>This project is licensed under the MIT license. See the <a href="LICENSE.txt">LICENSE</a> file for more info.</p></article>
+<h2>Common Issues</h2>
+<ol>
+<li>
+<p>The plugin is not working in Ionic / Cordova dev app.</p>
+<p>The plugin needs to be deployed on a real device to function, this is so because the dev apps do not add the necessary plugins needed for this library to function correctly. You'll need to either create a clone / fork of the Dev App or need to deploy it to a real device to test.</p>
+</li>
+<li>
+<p>The app hangs after authentication</p>
+<p>If 1 does not solve your problem, please make sure you have <code>cordova-plugin-customurlscheme</code> installed or an appropirate plugin to handle the callback (like deeplinks / universal links) and you are handling the callback appropriately</p>
+</li>
+</ol>
+<h2>Author</h2>
+<p><a href="auth0.com">Auth0</a></p>
+<h2>License</h2>
+<p>This project is licensed under the MIT license. See the <a href="LICENSE.txt">LICENSE</a> file for more info.</p></article>
     </section>
 
 
@@ -116,7 +146,7 @@ client.authorize(options, function (err, result) {
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun May 07 2017 22:30:12 GMT-0300 (-03) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Oct 16 2019 13:05:06 GMT+0100 (BST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
