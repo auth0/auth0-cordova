@@ -1,28 +1,43 @@
 # Change Log
 
+## [v0.4.1](https://github.com/auth0/auth0-cordova/tree/v0.4.0) (2019-10-16)
+
+[Full Changelog](https://github.com/auth0/auth0-cordova/compare/v0.4.0...v0.4.1)
+
+**Changed**
+
+Bumped auth0-js to 9.12.0 for better OIDC compliance [\113](https://github.com/auth0/auth0-cordova/pull/113) ([stevehobbsdev](https://github.com/stevehobbsdev))
+
 ## [v0.4.0](https://github.com/auth0/auth0-cordova/tree/v0.4.0) (2019-10-16)
+
 [Full Changelog](https://github.com/auth0/auth0-cordova/compare/v0.3.0...v0.4.0)
 
 **Changed**
+
 - Reformatted telemetry object [\#110](https://github.com/auth0/auth0-cordova/pull/110) ([stevehobbsdev](https://github.com/stevehobbsdev))
 - Updated dependencies to fix vulnerabilities [\#111](https://github.com/auth0/auth0-cordova/pull/111) ([stevehobbsdev](https://github.com/stevehobbsdev))
 
 ## [v0.3.0](https://github.com/auth0/auth0-cordova/tree/v0.4.0) (2017-12-26)
+
 [Full Changelog](https://github.com/auth0/auth0-cordova/compare/v0.2.0...v0.3.0)
 
 **Changed**
+
 - Deprecate Cordova sample [\#47](https://github.com/auth0/auth0-cordova/pull/47) ([chenkie](https://github.com/chenkie))
--  Docs refer to client but it doesn't exist [\#61](https://github.com/auth0/auth0-cordova/pull/47) ([JohnMcLear](https://github.com/JohnMcLear))
+- Docs refer to client but it doesn't exist [\#61](https://github.com/auth0/auth0-cordova/pull/47) ([JohnMcLear](https://github.com/JohnMcLear))
 - Updated Auth0.js version to 9.0.0 [\#53](https://github.com/auth0/auth0-cordova/pull/53) ([aaguiarz](https://github.com/aaguiarz))
 - Update to handle Auth0.js 9 and Update Example to Cordova 8.0 ([faafd9](https://github.com/auth0/auth0-cordova/commit/faafd9644f06853b55df516cbd2915b1a1eeead5)) ([darkyen](https://github.com/darkyen))
 
 ## [v0.2.0](https://github.com/auth0/auth0-cordova/tree/v0.2.0) (2017-07-07)
+
 [Full Changelog](https://github.com/auth0/auth0-cordova/compare/v0.1.0...v0.2.0)
 
 **Changed**
+
 - Handle InAppBrowser exit event correctly [\#34](https://github.com/auth0/auth0-cordova/pull/34) ([decates](https://github.com/decates))
 
 ## [v0.1.0](https://github.com/auth0/auth0-cordova/tree/v0.1.0) (2017-05-07)
+
 [Full Changelog](https://github.com/auth0/auth0-cordova/tree/v0.1.0)
 
 ### Requirements
@@ -43,8 +58,8 @@ cordova plugin add cordova-plugin-customurlscheme --variable URL_SCHEME={applica
 
 So if you have the following values
 
-* application package name or widget identifier: com.auth0.cordova.example
-* auth0 domain: samples.auth0.com
+- application package name or widget identifier: com.auth0.cordova.example
+- auth0 domain: samples.auth0.com
 
 in your config you should have some entries like
 
@@ -69,17 +84,17 @@ npm install @auth0/cordova
 then in your index.js you need to register the url handler `ondeviceready`
 
 ```js
-var Auth0Cordova = require('@auth0/cordova');
+var Auth0Cordova = require("@auth0/cordova");
 
 function main() {
-    function handlerUrl(url) {
-        Auth0Cordova.onRedirectUri(url);
-    }
-    window.handleOpenURL = handlerUrl;
-    // init your application
+  function handlerUrl(url) {
+    Auth0Cordova.onRedirectUri(url);
+  }
+  window.handleOpenURL = handlerUrl;
+  // init your application
 }
 
-document.addEventListener('deviceready', main);
+document.addEventListener("deviceready", main);
 ```
 
 ### Usage
@@ -92,10 +107,10 @@ const auth0 = new Auth0Cordova({
 });
 
 const options = {
-  scope: 'openid profile',
+  scope: "openid profile"
 };
 
-client.authorize(options, function (err, result) {
+client.authorize(options, function(err, result) {
   if (err) {
     // failure
   }
