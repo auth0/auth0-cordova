@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.4.2](https://github.com/auth0/auth0-cordova/tree/v0.4.0) (2020-01-24)
+
+[Full Changelog](https://github.com/auth0/auth0-cordova/compare/v0.4.1...v0.4.2)
+
+**Changed**
+
+Bumped auth0-js to 9.12.2 for removal of issued-at time check [\#116](https://github.com/auth0/auth0-cordova/pull/116) ([stevehobbsdev](https://github.com/stevehobbsdev))
+
 ## [v0.4.1](https://github.com/auth0/auth0-cordova/tree/v0.4.0) (2019-10-16)
 
 [Full Changelog](https://github.com/auth0/auth0-cordova/compare/v0.4.0...v0.4.1)
@@ -84,7 +92,7 @@ npm install @auth0/cordova
 then in your index.js you need to register the url handler `ondeviceready`
 
 ```js
-var Auth0Cordova = require("@auth0/cordova");
+var Auth0Cordova = require('@auth0/cordova');
 
 function main() {
   function handlerUrl(url) {
@@ -94,20 +102,20 @@ function main() {
   // init your application
 }
 
-document.addEventListener("deviceready", main);
+document.addEventListener('deviceready', main);
 ```
 
 ### Usage
 
 ```js
 const auth0 = new Auth0Cordova({
-  domain: "{YOUR_AUTH0_DOMAIN}",
-  clientId: "{YOUR_AUTH0_CLIENT_ID}",
-  packageIdentifier: "{WIDGET_ID_IN_CONFIG_XML}"
+  domain: '{YOUR_AUTH0_DOMAIN}',
+  clientId: '{YOUR_AUTH0_CLIENT_ID}',
+  packageIdentifier: '{WIDGET_ID_IN_CONFIG_XML}'
 });
 
 const options = {
-  scope: "openid profile"
+  scope: 'openid profile'
 };
 
 client.authorize(options, function(err, result) {
