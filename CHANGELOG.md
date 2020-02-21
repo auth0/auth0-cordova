@@ -1,6 +1,14 @@
 # Change Log
 
-## [v0.4.2](https://github.com/auth0/auth0-cordova/tree/v0.4.0) (2020-01-24)
+## [v0.4.3](https://github.com/auth0/auth0-cordova/tree/v0.4.3) (2020-01-21)
+
+**Dependencies**
+
+- Bump cordova-plugin-ionic-webview in /example/wkwebview [\#119](https://github.com/auth0/auth0-cordova/pull/119) (dependabot)
+- Bump codecov from 3.6.1 to 3.6.5 [\#122](https://github.com/auth0/auth0-cordova/pull/122) (dependabot)
+- Security upgrade url-parse from 1.4.3 to 1.4.5 [\#123](https://github.com/auth0/auth0-cordova/pull/123) (dependabot)
+
+## [v0.4.2](https://github.com/auth0/auth0-cordova/tree/v0.4.2) (2020-01-24)
 
 [Full Changelog](https://github.com/auth0/auth0-cordova/compare/v0.4.1...v0.4.2)
 
@@ -8,7 +16,7 @@
 
 Bumped auth0-js to 9.12.2 for removal of issued-at time check [\#116](https://github.com/auth0/auth0-cordova/pull/116) ([stevehobbsdev](https://github.com/stevehobbsdev))
 
-## [v0.4.1](https://github.com/auth0/auth0-cordova/tree/v0.4.0) (2019-10-16)
+## [v0.4.1](https://github.com/auth0/auth0-cordova/tree/v0.4.1) (2019-10-16)
 
 [Full Changelog](https://github.com/auth0/auth0-cordova/compare/v0.4.0...v0.4.1)
 
