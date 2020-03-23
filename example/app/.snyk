@@ -1,0 +1,10 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:extend:20180424':
+    - auth0-js > superagent > extend:
+        patched: '2020-03-23T13:59:45.059Z'
+    - auth0-js > idtoken-verifier > superagent > extend:
+        patched: '2020-03-23T13:59:45.059Z'
