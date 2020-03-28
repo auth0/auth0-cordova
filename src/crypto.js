@@ -2,9 +2,9 @@ var crypto = require('crypto');
 
 function base64UrlSafeEncode(string) {
   return string.toString('base64')
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=/g, '');
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '');
 }
 
 function sha256(buffer) {
