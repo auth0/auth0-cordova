@@ -1,4 +1,6 @@
 # Auth0 Cordova
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fauth0%2Fauth0-cordova.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fauth0%2Fauth0-cordova?ref=badge_shield)
+
 
 Library to make it easy to integrate Auth0 login in your Cordova applications.
 
@@ -111,3 +113,6 @@ For auth0 related questions/support please use the [Support Center](https://supp
 ## License
 
 This project is licensed under the MIT license. See the [LICENSE](LICENSE.txt) file for more info.
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fauth0%2Fauth0-cordova.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fauth0%2Fauth0-cordova?ref=badge_large)
