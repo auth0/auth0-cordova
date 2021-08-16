@@ -56,5 +56,8 @@
   },
   "prettier": {
     "singleQuote": true
+  },
+  "resolutions": {
+    "crypto-js": "^4.0.0"
   }
 }
