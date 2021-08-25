@@ -2,17 +2,17 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.15.0-browsers
+      - image: circleci/node:lts-browsers
     environment:
-          LANG: en_US.UTF-8
+      LANG: en_US.UTF-8
     steps:
       - checkout
-      - run: 
+      - run:
           name: Update Yarn
           command: 'sudo npm update -g yarn'
       - restore-cache:
           name: Restore Yarn Package Cache
-          keys: 
+          keys:
             - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
@@ -22,16 +22,16 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-      - run: 
+      - run:
           name: Build
           command: yarn run build
-      - run: 
+      - run:
           name: Lint
           command: yarn run lint
-      - run: 
+      - run:
           name: Run Tests
           command: yarn run ci:test
-      - run: 
+      - run:
           name: Generate Coverage
           command: yarn run ci:coverage
       - store_artifacts:
