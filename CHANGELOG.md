@@ -1,5 +1,11 @@
 # Change Log
 
+## [v0.4.4](https://github.com/auth0/auth0-cordova/tree/v0.4.4) (2021-08-27)
+
+**Dependencies**
+
+Various dependency updates. Also Webpack@4 to fix a build issue with `asn1.js` and `auth0-js@9.16.4` to bring in `crypto-js@4` and fix a vulnerability there. [\#177](https://github.com/auth0/auth0-cordova/pull/177) ([stevehobbsdev](https://github.com/stevehobbsdev))
+
 ## [v0.4.3](https://github.com/auth0/auth0-cordova/tree/v0.4.3) (2020-01-21)
 
 **Dependencies**
@@ -119,14 +125,14 @@ document.addEventListener('deviceready', main);
 const auth0 = new Auth0Cordova({
   domain: '{YOUR_AUTH0_DOMAIN}',
   clientId: '{YOUR_AUTH0_CLIENT_ID}',
-  packageIdentifier: '{WIDGET_ID_IN_CONFIG_XML}'
+  packageIdentifier: '{WIDGET_ID_IN_CONFIG_XML}',
 });
 
 const options = {
-  scope: 'openid profile'
+  scope: 'openid profile',
 };
 
-client.authorize(options, function(err, result) {
+client.authorize(options, function (err, result) {
   if (err) {
     // failure
   }
