@@ -8,8 +8,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Update Yarn
-          command: 'sudo npm update -g yarn'
+          name: Install and Update Yarn
+          command: 'sudo npm install -y yarn && sudo npm update -g yarn'
       - restore-cache:
           name: Restore Yarn Package Cache
           keys:
