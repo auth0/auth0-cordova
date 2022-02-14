@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Update Yarn
-          command: 'sudo npm update -g yarn'
+          command: 'npm install -g npm@latest && sudo npm install -g yarn@latest'
       - restore-cache:
           name: Restore Yarn Package Cache
           keys:
