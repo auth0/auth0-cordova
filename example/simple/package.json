@@ -13,7 +13,7 @@
         "cordova": "^9.0.0"
     },
     "dependencies": {
-        "cordova-ios": "^5.1.1",
+        "cordova-ios": "^6.0.0",
         "cordova-plugin-customurlscheme": "^5.0.2",
         "cordova-plugin-inappbrowser": "^3.2.0",
         "cordova-plugin-safariviewcontroller": "^1.5.2",
