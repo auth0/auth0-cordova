@@ -2,14 +2,14 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:lts-browsers
+      - image: cimg/node:lts-browsers
     environment:
       LANG: en_US.UTF-8
     steps:
       - checkout
       - run:
           name: Update Yarn
-          command: 'sudo npm update -g yarn'
+          command: 'sudo npm install -g npm@latest && sudo npm install -g --force yarn@latest'
       - restore-cache:
           name: Restore Yarn Package Cache
           keys:
