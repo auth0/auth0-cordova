@@ -7,9 +7,12 @@ jobs:
       LANG: en_US.UTF-8
     steps:
       - checkout
+      - run: |
+        node -v
+        npm -v
       - run:
           name: Update Yarn
-          command: 'sudo npm install -g npm@latest && sudo npm install -g --force yarn@latest'
+          command: npm install -g npm@latest && sudo npm install -g --force yarn@latest
       - restore-cache:
           name: Restore Yarn Package Cache
           keys:
