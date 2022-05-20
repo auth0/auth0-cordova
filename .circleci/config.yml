@@ -8,9 +8,9 @@ jobs:
     steps:
       - checkout
       - run:
-        command: |
-          node -v
-          npm -v
+          command: |
+            node -v
+            npm -v
       - run:
           name: Update Yarn
           command: npm install -g npm@latest && sudo npm install -g --force yarn@latest
