@@ -1,5 +1,11 @@
 # Change Log
 
+## [v0.4.5](https://github.com/auth0/auth0-cordova/tree/v0.4.5) (2022-05-20)
+
+**Dependencies**
+
+Various dependency updates as reported by Snky, please see [this commit diff](https://github.com/auth0/auth0-cordova/compare/v0.4.4...master) for the full list.
+
 ## [v0.4.4](https://github.com/auth0/auth0-cordova/tree/v0.4.4) (2021-08-27)
 
 **Dependencies**
