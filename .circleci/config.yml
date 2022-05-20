@@ -13,7 +13,7 @@ jobs:
             npm -v
       - run:
           name: Update Yarn
-          command: npm install -g npm@latest && sudo npm install -g --force yarn@latest
+          command: npm install -g npm@latest && npm install -g --force yarn@latest
       - restore-cache:
           name: Restore Yarn Package Cache
           keys:
