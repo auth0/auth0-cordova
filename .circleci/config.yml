@@ -1,11 +1,14 @@
-version: 2
+version: 2.1
 orbs:
   codecov: codecov/codecov@3
+executors:
+  docker-executor:
+    docker:
+      - image: cimg/node:lts-browsers
 
 jobs:
   build:
-    docker:
-      - image: cimg/node:lts-browsers
+    executor: docker-executor
     environment:
       LANG: en_US.UTF-8
     steps:
@@ -41,3 +44,8 @@ jobs:
       - codecov/upload
       - store_artifacts:
           path: dist
+
+workflows:
+  build-and-test:
+    jobs:
+      - build
