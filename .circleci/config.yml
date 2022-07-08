@@ -1,7 +1,4 @@
 version: 2
-orbs:
-  codecov: codecov/codecov@3
-
 jobs:
   build:
     docker:
@@ -38,6 +35,8 @@ jobs:
       - run:
           name: Run Tests
           command: yarn run ci:test
-      - codecov/upload
+      - run:
+          name: Generate Coverage
+          command: yarn run ci:coverage
       - store_artifacts:
           path: dist
