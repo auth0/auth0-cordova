@@ -1,8 +1,14 @@
-version: 2
-jobs:
-  build:
+version: 2.1
+orbs:
+  codecov: codecov/codecov@3
+executors:
+  docker-executor:
     docker:
       - image: cimg/node:lts-browsers
+
+jobs:
+  build:
+    executor: docker-executor
     environment:
       LANG: en_US.UTF-8
     steps:
@@ -14,18 +20,9 @@ jobs:
       - run:
           name: Update Yarn
           command: npm install -g npm@latest && npm install -g --force yarn@latest
-      - restore-cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
           command: yarn install
-      - save-cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
       - run:
           name: Build
           command: yarn run build
@@ -35,8 +32,11 @@ jobs:
       - run:
           name: Run Tests
           command: yarn run ci:test
-      - run:
-          name: Generate Coverage
-          command: yarn run ci:coverage
+      - codecov/upload
       - store_artifacts:
           path: dist
+
+workflows:
+  build-and-test:
+    jobs:
+      - build
