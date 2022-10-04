@@ -17,9 +17,7 @@ jobs:
           command: |
             node -v
             npm -v
-      - run:
-          name: Update Yarn
-          command: npm install -g npm@latest && npm install -g --force yarn@latest
+            yarn -v
       - run:
           name: Install Dependencies
           command: yarn install
