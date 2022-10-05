@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "eslint": "4.18.2",
+    "eslint": "8.24.0",
     "eslint-config-auth0-base": "6.0.0",
     "eslint-plugin-compat": "^1.0.0",
     "eslint-plugin-import": "1.16.0",
