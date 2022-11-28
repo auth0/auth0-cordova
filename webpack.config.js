@@ -19,6 +19,11 @@ const config = {
     alias: {
       'bn.js': path.join(__dirname, 'node_modules/bn.js/lib/bn.js'),
     },
+    fallback: {
+      crypto: require.resolve('crypto-browserify'),
+      stream: require.resolve('stream-browserify'),
+      buffer: require.resolve('buffer/'),
+    },
   },
 
   devtool: 'source-map',
