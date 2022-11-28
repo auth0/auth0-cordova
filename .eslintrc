@@ -1,5 +1,4 @@
 {
-  "extends": "auth0-base/legacy",
   "plugins": ["compat"],
   "env": {
     "browser": true
