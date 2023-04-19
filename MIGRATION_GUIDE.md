@@ -4,7 +4,7 @@ We recommend replacing `@auth0/cordova` with the [Auth0 SPA SDK](https://github.
 
 ## Using Ionic?
 
-If your app is using Ionic, you can remove `@auth0/cordova` and follow our Ionic Quickstarts to integrate with our framework-specific wrappers.
+If your app is using Ionic, you can remove `@auth0/cordova` and use one of the following framework-specific Ionic quickstarts and sample apps to integrate Auth0 into your app:
 
 ### React
 
