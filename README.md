@@ -1,6 +1,8 @@
 # Auth0 Cordova
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fauth0%2Fauth0-cordova.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fauth0%2Fauth0-cordova?ref=badge_shield)
 
+> **Warning**
+> This library has been deprecated, and official support will end on October 31, 2023. See the [Migration Guide](./MIGRATION_GUIDE.md) for information to migrate your application to one of our other libraries.
 
 Library to make it easy to integrate Auth0 login in your Cordova applications.
 
